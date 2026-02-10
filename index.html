@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glomerulopatias - Guia Completo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #2d3748;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        nav {
+            background: #f7fafc;
+            padding: 20px;
+            border-bottom: 3px solid #667eea;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        nav button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        nav button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        nav button.active {
+            background: #2d3748;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .card {
+            background: #f7fafc;
+            border-left: 5px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .question-card {
+            background: #f7fafc;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #667eea;
+        }
+
+        .question-card h3 {
+            color: #2d3748;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .option {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid #e2e8f0;
+        }
+
+        .option:hover {
+            border-color: #667eea;
+            transform: translateX(5px);
+        }
+
+        .option.selected {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .option.correct {
+            background: #48bb78;
+            color: white;
+            border-color: #48bb78;
+        }
+
+        .option.incorrect {
+            background: #f56565;
+            color: white;
+            border-color: #f56565;
+        }
+
+        .feedback {
+            background: #edf2f7;
+            padding: 20px;
+            margin-top: 15px;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .feedback h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-submit:disabled {
+            background: #cbd5e0;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .score-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 30px 0;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .score-card h2 {
+            color: white;
+            border: none;
+            margin-bottom: 10px;
+        }
+
+        .score-number {
+            font-size: 3em;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .icon {
+            font-size: 1.2em;
+            margin-right: 8px;
+        }
+
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            nav {
+                flex-direction: column;
+            }
+
+            nav button {
+                width: 100%;
+            }
+
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏥 Glomerulopatias</h1>
+            <p>Guia Completo e Quiz Interativo</p>
+        </header>
+
+        <nav>
+            <button onclick="showSection('intro')" class="active" id="btn-intro">Introdução</button>
+            <button onclick="showSection('classificacao')" id="btn-classificacao">Classificação</button>
+            <button onclick="showSection('causas')" id="btn-causas">Causas</button>
+            <button onclick="showSection('sintomas')" id="btn-sintomas">Sintomas</button>
+            <button onclick="showSection('diagnostico')" id="btn-diagnostico">Diagnóstico</button>
+            <button onclick="showSection('tratamento')" id="btn-tratamento">Tratamento</button>
+            <button onclick="showSection('quiz')" id="btn-quiz">📝 Quiz</button>
+        </nav>
+
+        <div class="content">
+            <!-- INTRODUÇÃO -->
+            <div id="intro" class="section active">
+                <h2><span class="icon">📋</span>O que são Glomerulopatias?</h2>
+                
+                <div class="card">
+                    <p>As <strong>glomerulopatias</strong> são um grupo de doenças que acometem os <strong>glomérulos renais</strong> - estruturas microscópicas responsáveis pela filtração do sangue nos rins. Essas condições representam uma das principais causas de doença renal crônica e podem levar à insuficiência renal se não tratadas adequadamente.</p>
+                </div>
+
+                <div class="card">
+                    <h4>🔬 Anatomia do Glomérulo</h4>
+                    <p>Os glomérulos são emaranhados de capilares sanguíneos onde ocorre a filtração do sangue e a formação da urina. Quando inflamados ou danificados, podem permitir a passagem de proteínas e células sanguíneas para a urina, comprometendo a função renal.</p>
+                </div>
+
+                <div class="highlight">
+                    <h3>⚠️ Importância do Diagnóstico Precoce</h3>
+                    <p>O diagnóstico precoce e o tratamento adequado são fundamentais para evitar a progressão para insuficiência renal e melhorar a qualidade de vida dos pacientes.</p>
+                </div>
+            </div>
+
+            <!-- CLASSIFICAÇÃO -->
+            <div id="classificacao" class="section">
+                <h2><span class="icon">📊</span>Classificação das Glomerulopatias</h2>
+
+                <h3>Por Origem:</h3>
+                
+                <div class="card">
+                    <h4>Glomerulopatias Primárias</h4>
+                    <ul>
+                        <li>Ocorrem espontaneamente, sem causa secundária identificada</li>
+                        <li>Afetam exclusivamente os glomérulos renais</li>
+                        <li>Exemplos: Doença de lesões mínimas, Glomeruloesclerose segmentar e focal</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>Glomerulopatias Secundárias</h4>
+                    <ul>
+                        <li>Desenvolvem-se como consequência de outras doenças</li>
+                        <li>Causas comuns: diabetes mellitus, lúpus eritematoso sistêmico, infecções, vasculites</li>
+                    </ul>
+                </div>
+
+                <h3>Por Apresentação Clínica:</h3>
+
+                <div class="card">
+                    <h4>1. Síndrome Nefrótica</h4>
+                    <ul>
+                        <li>Proteinúria maciça (>3,5g/dia)</li>
+                        <li>Hipoalbuminemia</li>
+                        <li>Edema generalizado</li>
+                        <li>Hiperlipidemia</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>2. Síndrome Nefrítica</h4>
+                    <ul>
+                        <li>Hematúria (urina escura)</li>
+                        <li>Hipertensão arterial</li>
+                        <li>Edema</li>
+                        <li>Proteinúria leve a moderada</li>
+                        <li>Diminuição do volume urinário</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>3. Glomerulopatia Rapidamente Progressiva</h4>
+                    <ul>
+                        <li>Perda rápida da função renal (dias a semanas)</li>
+                        <li>Requer tratamento urgente</li>
+                        <li>Alto risco de insuficiência renal terminal</li>
+                    </ul>
+                </div>
+
+                <h3>Por Evolução Temporal:</h3>
+                <div class="card">
+                    <ul>
+                        <li><strong>Aguda:</strong> Instalação súbita dos sintomas</li>
+                        <li><strong>Crônica:</strong> Progressão lenta e gradual</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- CAUSAS -->
+            <div id="causas" class="section">
+                <h2><span class="icon">🦠</span>Principais Causas</h2>
+
+                <div class="card">
+                    <h4>Infecções</h4>
+                    <ul>
+                        <li>Glomerulonefrite pós-estreptocócica (após infecções de garganta ou pele)</li>
+                        <li>Endocardite bacteriana</li>
+                        <li>Hepatites virais (B e C)</li>
+                        <li>HIV</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>Doenças Autoimunes</h4>
+                    <ul>
+                        <li>Lúpus eritematoso sistêmico</li>
+                        <li>Vasculites sistêmicas</li>
+                        <li>Síndrome de Goodpasture</li>
+                        <li>Púrpura de Henoch-Schönlein</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>Doenças Metabólicas</h4>
+                    <ul>
+                        <li>Diabetes mellitus (nefropatia diabética)</li>
+                        <li>Amiloidose</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>Distúrbios Genéticos</h4>
+                    <ul>
+                        <li>Síndrome de Alport</li>
+                        <li>Doença de Fabry</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>Outras Causas</h4>
+                    <ul>
+                        <li>Medicamentos nefrotóxicos</li>
+                        <li>Neoplasias</li>
+                        <li>Hipertensão arterial grave</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- SINTOMAS -->
+            <div id="sintomas" class="section">
+                <h2><span class="icon">🩺</span>Sintomas</h2>
+
+                <p>Os pacientes podem apresentar desde quadros <strong>assintomáticos</strong> até manifestações graves:</p>
+
+                <h3>Sintomas Urinários:</h3>
+                <div class="card">
+                    <ul>
+                        <li>🔴 Urina escura (cor de coca-cola ou avermelhada)</li>
+                        <li>💧 Urina espumosa (por excesso de proteínas)</li>
+                        <li>📉 Diminuição do volume urinário</li>
+                        <li>📈 Aumento da frequência urinária</li>
+                    </ul>
+                </div>
+
+                <h3>Sintomas Sistêmicos:</h3>
+                <div class="card">
+                    <ul>
+                        <li>💧 Edema (inchaço) - especialmente ao redor dos olhos, pernas, tornozelos e pés</li>
+                        <li>❤️ Hipertensão arterial</li>
+                        <li>😴 Fadiga e mal-estar</li>
+                        <li>🍽️ Falta de apetite</li>
+                        <li>🤢 Náuseas e vômitos (em casos avançados)</li>
+                        <li>🌡️ Febre (em casos infecciosos)</li>
+                    </ul>
+                </div>
+
+                <div class="highlight">
+                    <h3>🚨 Sinais de Alerta</h3>
+                    <p>Se você apresenta sintomas como urina escura, inchaço persistente ou diminuição do volume urinário, procure um nefrologista para avaliação adequada!</p>
+                </div>
+            </div>
+
+            <!-- DIAGNÓSTICO -->
+            <div id="diagnostico" class="section">
+                <h2><span class="icon">🔬</span>Diagnóstico</h2>
+
+                <h3>Exames Laboratoriais:</h3>
+                
+                <div class="card">
+                    <h4>Exame de Urina</h4>
+                    <ul>
+                        <li>Detecta hematúria (sangue na urina)</li>
+                        <li>Identifica proteinúria (proteínas na urina)</li>
+                        <li>Avalia sedimento urinário</li>
+                        <li>Quantifica proteinúria de 24 horas</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>Exames de Sangue</h4>
+                    <ul>
+                        <li>Creatinina e ureia (função renal)</li>
+                        <li>Albumina sérica</li>
+                        <li>Hemograma completo</li>
+                        <li>Eletrólitos (sódio, potássio)</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>Testes Imunológicos</h4>
+                    <ul>
+                        <li>Complemento (C3, C4)</li>
+                        <li>Anticorpos antinucleares (FAN)</li>
+                        <li>ANCA (vasculites)</li>
+                        <li>Anti-DNA, anti-Sm (lúpus)</li>
+                        <li>ASLO (estreptococo)</li>
+                    </ul>
+                </div>
+
+                <h3>Exames de Imagem:</h3>
+                <div class="card">
+                    <ul>
+                        <li>Ultrassonografia renal</li>
+                        <li>Tomografia computadorizada (quando necessário)</li>
+                        <li>Ressonância magnética</li>
+                    </ul>
+                </div>
+
+                <h3>Biópsia Renal:</h3>
+                <div class="highlight">
+                    <h4>🎯 Exame Definitivo</h4>
+                    <p>A biópsia renal é o exame padrão-ouro para diagnóstico preciso. Permite:</p>
+                    <ul>
+                        <li>✅ Identificar o tipo específico de glomerulopatia</li>
+                        <li>✅ Avaliar gravidade e extensão das lesões</li>
+                        <li>✅ Orientar o tratamento mais adequado</li>
+                        <li>✅ Determinar prognóstico</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- TRATAMENTO -->
+            <div id="tratamento" class="section">
+                <h2><span class="icon">💊</span>Tratamento</h2>
+
+                <p>O tratamento varia conforme o tipo e gravidade da glomerulopatia:</p>
+
+                <h3>Medicamentos Imunossupressores:</h3>
+                <div class="card">
+                    <ul>
+                        <li>Corticosteroides (prednisona)</li>
+                        <li>Ciclofosfamida</li>
+                        <li>Micofenolato mofetil</li>
+                        <li>Ciclosporina</li>
+                        <li>Rituximabe (anticorpo monoclonal)</li>
+                    </ul>
+                </div>
+
+                <h3>Controle de Sintomas:</h3>
+                <div class="card">
+                    <h4>Anti-hipertensivos</h4>
+                    <ul>
+                        <li>IECA (Inibidores da ECA)</li>
+                        <li>BRA (Bloqueadores do receptor de angiotensina)</li>
+                        <li>Reduzem proteinúria e protegem os rins</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>Outras Medidas</h4>
+                    <ul>
+                        <li>Diuréticos (para edema)</li>
+                        <li>Restrição de sal e proteínas na dieta</li>
+                        <li>Estatinas (para controle lipídico)</li>
+                        <li>Anticoagulantes (quando indicado)</li>
+                    </ul>
+                </div>
+
+                <h3>Tratamento da Causa Subjacente:</h3>
+                <div class="card">
+                    <ul>
+                        <li>Antibióticos (em infecções)</li>
+                        <li>Controle glicêmico rigoroso (diabetes)</li>
+                        <li>Tratamento de doenças autoimunes</li>
+                        <li>Suspensão de medicamentos nefrotóxicos</li>
+                    </ul>
+                </div>
+
+                <h3>Terapias Avançadas:</h3>
+                <div class="card">
+                    <ul>
+                        <li>Plasmaférese (em casos graves)</li>
+                        <li>Diálise (insuficiência renal avançada)</li>
+                        <li>Transplante renal (quando indicado)</li>
+                    </ul>
+                </div>
+
+                <div class="highlight">
+                    <h3>⚠️ Complicações se Não Tratada</h3>
+                    <ul>
+                        <li>Insuficiência renal crônica</li>
+                        <li>Necessidade de diálise ou transplante</li>
+                        <li>Hipertensão arterial de difícil controle</li>
+                        <li>Doenças cardiovasculares</li>
+                        <li>Síndrome urêmica</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>🎯 Prognóstico</h4>
+                    <p>O prognóstico depende de:</p>
+                    <ul>
+                        <li>Tipo específico de glomerulopatia</li>
+                        <li>Precocidade do diagnóstico</li>
+                        <li>Resposta ao tratamento</li>
+                        <li>Presença de comorbidades</li>
+                        <li>Grau de comprometimento renal inicial</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- QUIZ -->
+            <div id="quiz" class="section">
+                <h2><span class="icon">📝</span>Quiz - Teste Seus Conhecimentos</h2>
+                <p style="text-align: center; margin-bottom: 30px;">Responda as 20 questões e confira suas respostas comentadas!</p>
+
+                <div class="quiz-container" id="quiz-container">
+                    <!-- As questões serão inseridas aqui pelo JavaScript -->
+                </div>
+
+                <div id="score-display" style="display: none;"></div>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2026 Glomerulopatias - Material Educativo | Desenvolvido para fins educacionais</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">⚕️ Consulte sempre um profissional de saúde qualificado</p>
+        </footer>
+    </div>
+
+    <script>
+        // Navegação entre seções
+        function showSection(sectionId) {
+            // Remove active de todas as seções
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Remove active de todos os botões
+            document.querySelectorAll('nav button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Ativa a seção e o botão correspondente
+            document.getElementById(sectionId).classList.add('active');
+            document.getElementById('btn-' + sectionId).classList.add('active');
+
+            // Scroll para o topo
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Questões do Quiz
+        const questions = [
+            {
+                question: "1. O que são glomerulopatias?",
+                options: [
+                    "Doenças que afetam os túbulos renais",
+                    "Doenças que acometem os glomérulos renais",
+                    "Infecções do trato urinário",
+                    "Cálculos renais"
+                ],
+                correct: 1,
+                explanation: "As glomerulopatias são doenças que acometem os glomérulos renais, estruturas microscópicas responsáveis pela filtração do sangue. Quando danificados, podem permitir a passagem de proteínas e células sanguíneas para a urina."
+            },
+            {
+                question: "2. Qual das seguintes NÃO é uma apresentação clínica comum das glomerulopatias?",
+                options: [
+                    "Síndrome nefrótica",
+                    "Síndrome nefrítica",
+                    "Síndrome hepatorrenal",
+                    "Glomerulopatia rapidamente progressiva"
+                ],
+                correct: 2,
+                explanation: "As três principais apresentações clínicas das glomerulopatias são: síndrome nefrótica, síndrome nefrítica e glomerulopatia rapidamente progressiva. A síndrome hepatorrenal é uma condição diferente relacionada à insuficiência hepática."
+            },
+            {
+                question: "3. Na síndrome nefrótica, qual é o valor mínimo de proteinúria por dia?",
+                options: [
+                    "Maior que 1,5g/dia",
+                    "Maior que 2,5g/dia",
+                    "Maior que 3,5g/dia",
+                    "Maior que 5,0g/dia"
+                ],
+                correct: 2,
+                explanation: "A síndrome nefrótica é caracterizada por proteinúria maciça superior a 3,5g/dia, além de hipoalbuminemia, edema generalizado e hiperlipidemia."
+            },
+            {
+                question: "4. Qual exame é considerado padrão-ouro para o diagnóstico definitivo das glomerulopatias?",
+                options: [
+                    "Ultrassonografia renal",
+                    "Exame de urina simples",
+                    "Biópsia renal",
+                    "Tomografia computadorizada"
+                ],
+                correct: 2,
+                explanation: "A biópsia renal é o exame padrão-ouro para diagnóstico definitivo, permitindo identificar o tipo específico de glomerulopatia, avaliar a gravidade das lesões e orientar o tratamento adequado."
+            },
+            {
+                question: "5. A glomerulonefrite pós-estreptocócica está relacionada a qual tipo de infecção prévia?",
+                options: [
+                    "Infecção urinária",
+                    "Infecção de garganta ou pele",
+                    "Pneumonia",
+                    "Gastroenterite"
+                ],
+                correct: 1,
+                explanation: "A glomerulonefrite pós-estreptocócica ocorre após infecções de garganta (faringite) ou pele (impetigo) causadas pela bactéria Streptococcus. É mais comum em crianças."
+            },
+            {
+                question: "6. Qual característica diferencia as glomerulopatias primárias das secundárias?",
+                options: [
+                    "As primárias são mais graves",
+                    "As primárias ocorrem sem causa secundária identificada",
+                    "As primárias não necessitam tratamento",
+                    "As primárias não causam proteinúria"
+                ],
+                correct: 1,
+                explanation: "Glomerulopatias primárias ocorrem espontaneamente, sem causa secundária identificada, afetando exclusivamente os glomérulos. Já as secundárias desenvolvem-se como consequência de outras doenças como diabetes, lúpus ou infecções."
+            },
+            {
+                question: "7. Qual sinal clínico é mais característico da síndrome nefrítica?",
+                options: [
+                    "Urina clara e abundante",
+                    "Hematúria (urina escura)",
+                    "Ausência de edema",
+                    "Hipotensão arterial"
+                ],
+                correct: 1,
+                explanation: "A síndrome nefrítica é caracterizada por hematúria (urina escura, cor de coca-cola), hipertensão arterial, edema e diminuição do volume urinário. A proteinúria é geralmente leve a moderada."
+            },
+            {
+                question: "8. Qual doença autoimune é uma causa comum de glomerulopatia secundária?",
+                options: [
+                    "Artrite reumatoide",
+                    "Lúpus eritematoso sistêmico",
+                    "Esclerose múltipla",
+                    "Doença celíaca"
+                ],
+                correct: 1,
+                explanation: "O lúpus eritematoso sistêmico (LES) é uma importante causa de glomerulopatia secundária, podendo causar nefrite lúpica com diferentes padrões histológicos. Outras doenças autoimunes como vasculites também podem afetar os glomérulos."
+            },
+            {
+                question: "9. O edema nas glomerulopatias ocorre principalmente devido a:",
+                options: [
+                    "Hipertensão arterial",
+                    "Retenção de sódio e perda de proteínas",
+                    "Excesso de ingestão de líquidos",
+                    "Obstrução venosa"
+                ],
+                correct: 1,
+                explanation: "O edema ocorre principalmente pela combinação de retenção de sódio e água pelos rins danificados e pela perda de proteínas (especialmente albumina) na urina, que reduz a pressão oncótica do sangue."
+            },
+            {
+                question: "10. Qual classe de medicamentos é frequentemente usada no tratamento das glomerulopatias para reduzir proteinúria?",
+                options: [
+                    "Antibióticos",
+                    "IECA (Inibidores da ECA)",
+                    "Analgésicos",
+                    "Broncodilatadores"
+                ],
+                correct: 1,
+                explanation: "IECA (Inibidores da Enzima Conversora de Angiotensina) e BRA (Bloqueadores do Receptor de Angiotensina) são fundamentais no tratamento, pois além de controlar a pressão arterial, reduzem a proteinúria e exercem efeito nefroprotetor."
+            },
+            {
+                question: "11. A glomerulopatia rapidamente progressiva é caracterizada por:",
+                options: [
+                    "Evolução lenta ao longo de anos",
+                    "Perda rápida da função renal em dias a semanas",
+                    "Ausência de sintomas",
+                    "Recuperação espontânea sem tratamento"
+                ],
+                correct: 1,
+                explanation: "A glomerulopatia rapidamente progressiva é uma emergência nefrológica caracterizada por perda rápida e grave da função renal em dias a semanas, requerendo tratamento urgente para evitar insuficiência renal terminal."
+            },
+            {
+                question: "12. Qual achado laboratorial é típico da síndrome nefrótica?",
+                options: [
+                    "Hiperalbuminemia",
+                    "Hipoalbuminemia",
+                    "Hipoglicemia",
+                    "Leucocitose"
+                ],
+                correct: 1,
+                explanation: "A hipoalbuminemia (baixos níveis de albumina no sangue) é característica da síndrome nefrótica, resultante da perda maciça de proteínas pela urina. Isso contribui para o desenvolvimento de edema generalizado."
+            },
+            {
+                question: "13. Qual teste imunológico é importante para investigar glomerulonefrite pós-estreptocócica?",
+                options: [
+                    "FAN (Fator antinuclear)",
+                    "ASLO (Antiestreptolisina O)",
+                    "Anti-DNA",
+                    "ANCA"
+                ],
+                correct: 1,
+                explanation: "O ASLO (Antiestreptolisina O) é um marcador de infecção estreptocócica recente e está elevado na glomerulonefrite pós-estreptocócica. O complemento C3 também está tipicamente diminuído nesta condição."
+            },
+            {
+                question: "14. A nefropatia diabética é classificada como uma glomerulopatia:",
+                options: [
+                    "Primária",
+                    "Secundária",
+                    "Aguda",
+                    "Hereditária"
+                ],
+                correct: 1,
+                explanation: "A nefropatia diabética é uma glomerulopatia secundária, pois se desenvolve como complicação do diabetes mellitus. É uma das principais causas de doença renal crônica terminal no mundo."
+            },
+            {
+                question: "15. Qual sintoma urinário é descrito como 'urina espumosa'?",
+                options: [
+                    "Hematúria",
+                    "Piúria",
+                    "Proteinúria intensa",
+                    "Glicosúria"
+                ],
+                correct: 2,
+                explanation: "A urina espumosa é um sinal de proteinúria intensa, causada pela presença de grande quantidade de proteínas na urina. É um sintoma característico da síndrome nefrótica."
+            },
+            {
+                question: "16. Qual dos seguintes NÃO é um imunossupressor usado no tratamento de glomerulopatias?",
+                options: [
+                    "Prednisona",
+                    "Ciclofosfamida",
+                    "Amoxicilina",
+                    "Micofenolato mofetil"
+                ],
+                correct: 2,
+                explanation: "A amoxicilina é um antibiótico, não um imunossupressor. Os imunossupressores como prednisona, ciclofosfamida e micofenolato mofetil são utilizados para controlar a inflamação glomerular em muitos tipos de glomerulopatias."
+            },
+            {
+                question: "17. O complemento C3 está tipicamente DIMINUÍDO em qual condição?",
+                options: [
+                    "Doença de lesões mínimas",
+                    "Glomerulonefrite pós-estreptocócica",
+                    "Nefropatia por IgA",
+                    "Glomeruloesclerose segmentar e focal"
+                ],
+                correct: 1,
+                explanation: "Na glomerulonefrite pós-estreptocócica, o C3 está tipicamente diminuído devido ao consumo pelo sistema complemento durante a resposta inflamatória. O C3 geralmente normaliza em 6-8 semanas."
+            },
+            {
+                question: "18. Qual medida dietética é importante no manejo das glomerulopatias?",
+                options: [
+                    "Aumento da ingestão de sal",
+                    "Restrição de sal e proteínas",
+                    "Dieta rica em gorduras",
+                    "Aumento do consumo de açúcares"
+                ],
+                correct: 1,
+                explanation: "A restrição de sal ajuda a controlar o edema e a hipertensão, enquanto a moderação no consumo de proteínas pode reduzir a carga sobre os rins danificados. Essas medidas dietéticas são complementares ao tratamento medicamentoso."
+            },
+            {
+                question: "19. A Síndrome de Alport é um exemplo de glomerulopatia:",
+                options: [
+                    "Infecciosa",
+                    "Autoimune",
+                    "Hereditária",
+                    "Medicamentosa"
+                ],
+                correct: 2,
+                explanation: "A Síndrome de Alport é uma glomerulopatia hereditária causada por mutações nos genes do colágeno tipo IV, levando a hematúria, surdez neurossensorial progressiva e alterações oculares."
+            },
+            {
+                question: "20. Qual é uma possível complicação grave das glomerulopatias não tratadas?",
+                options: [
+                    "Diabetes tipo 2",
+                    "Insuficiência renal crônica",
+                    "Catarata",
+                    "Osteoporose"
+                ],
+                correct: 1,
+                explanation: "A insuficiência renal crônica é uma das complicações mais graves das glomerulopatias não tratadas ou de difícil controle. Pode evoluir para necessidade de diálise ou transplante renal. Outras complicações incluem hipertensão de difícil controle e doenças cardiovasculares."
+            }
+        ];
+
+        // Função para criar o quiz
+        function createQuiz() {
+            const container = document.getElementById('quiz-container');
+            
+            questions.forEach((q, index) => {
+                const questionCard = document.createElement('div');
+                questionCard.className = 'question-card';
+                questionCard.id = `question-${index}`;
+                
+                let optionsHTML = '';
+                q.options.forEach((option, optIndex) => {
+                    optionsHTML += `
+                        <div class="option" onclick="selectOption(${index}, ${optIndex})">
+                            <strong>${String.fromCharCode(65 + optIndex)})</strong> ${option}
+                        </div>
+                    `;
+                });
+                
+                questionCard.innerHTML = `
+                    <h3>${q.question}</h3>
+                    ${optionsHTML}
+                    <button class="btn-submit" onclick="checkAnswer(${index})" disabled id="btn-${index}">
+                        Verificar Resposta
+                    </button>
+                    <div class="feedback" id="feedback-${index}">
+                        <h4>${q.correct === getSelectedOption(index) ? '✅ Correto!' : '❌ Incorreto!'}</h4>
+                        <p><strong>Explicação:</strong> ${q.explanation}</p>
+                    </div>
+                `;
+                
+                container.appendChild(questionCard);
+            });
+        }
+
+        // Armazenar respostas selecionadas
+        let selectedAnswers = {};
+        let answeredQuestions = 0;
+
+        function selectOption(questionIndex, optionIndex) {
+            // Remove seleção anterior
+            const questionCard = document.getElementById(`question-${questionIndex}`);
+            const options = questionCard.querySelectorAll('.option');
+            options.forEach(opt => opt.classList.remove('selected'));
+            
+            // Adiciona nova seleção
+            options[optionIndex].classList.add('selected');
+            selectedAnswers[questionIndex] = optionIndex;
+            
+            // Habilita botão de verificar
+            document.getElementById(`btn-${questionIndex}`).disabled = false;
+        }
+
+        function getSelectedOption(questionIndex) {
+            return selectedAnswers[questionIndex];
+        }
+
+        function checkAnswer(questionIndex) {
+            const question = questions[questionIndex];
+            const selected = selectedAnswers[questionIndex];
+            const questionCard = document.getElementById(`question-${questionIndex}`);
+            const options = questionCard.querySelectorAll('.option');
+            const feedback = document.getElementById(`feedback-${questionIndex}`);
+            const btn = document.getElementById(`btn-${questionIndex}`);
+            
+            // Desabilita todas as opções
+            options.forEach(opt => opt.style.pointerEvents = 'none');
+            
+            // Marca correto/incorreto
+            options[question.correct].classList.add('correct');
+            if (selected !== question.correct) {
+                options[selected].classList.add('incorrect');
+            }
+            
+            // Atualiza feedback
+            feedback.querySelector('h4').textContent = selected === question.correct ? '✅ Correto!' : '❌ Incorreto!';
+            feedback.classList.add('show');
+            
+            // Desabilita botão
+            btn.disabled = true;
+            btn.textContent = 'Respondida';
+            
+            // Incrementa contador
+            answeredQuestions++;
+            
+            // Se todas foram respondidas, mostra score
+            if (answeredQuestions === questions.length) {
+                showScore();
+            }
+        }
+
+        function showScore() {
+            let correct = 0;
+            questions.forEach((q, index) => {
+                if (selectedAnswers[index] === q.correct) {
+                    correct++;
+                }
+            });
+            
+            const percentage = (correct / questions.length * 100).toFixed(1);
+            let message = '';
+            let emoji = '';
+            
+            if (percentage >= 90) {
+                message = 'Excelente! Você domina o assunto!';
+                emoji = '🏆';
+            } else if (percentage >= 70) {
+                message = 'Muito bom! Continue estudando!';
+                emoji = '🎯';
+            } else if (percentage >= 50) {
+                message = 'Bom trabalho! Revise alguns pontos.';
+                emoji = '📚';
+            } else {
+                message = 'Continue estudando! Você vai melhorar!';
+                emoji = '💪';
+            }
+            
+            const scoreDisplay = document.getElementById('score-display');
+            scoreDisplay.innerHTML = `
+                <div class="score-card">
+                    <h2>${emoji} Resultado Final ${emoji}</h2>
+                    <div class="score-number">${correct}/${questions.length}</div>
+                    <p style="font-size: 1.5em; margin: 10px 0;">${percentage}%</p>
+                    <p style="font-size: 1.2em;">${message}</p>
+                    <button class="btn-submit" onclick="location.reload()" style="margin-top: 20px; background: white; color: #667eea;">
+                        🔄 Refazer Quiz
+                    </button>
+                </div>
+            `;
+            scoreDisplay.style.display = 'block';
+            
+            // Scroll para o resultado
+            scoreDisplay.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // Inicializa o quiz quando a página carregar
+        window.onload = function() {
+            createQuiz();
+        };
+    </script>
+</body>
+</html>
